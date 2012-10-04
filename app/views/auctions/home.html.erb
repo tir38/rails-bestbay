@@ -1,0 +1,32 @@
+<div class="center">
+<%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
+
+</div>
+<%= link_to "New Post"%>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>ID</th>
+    <th>Base information</th>
+    <th>Price</th>
+    <th>Seller name</th>
+    <th>Start time</th>
+    <th>Bid</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @auctions.each do |auction| %>
+    <tr>
+    <td><%= auction.Product= "Toy" %></td>
+    <td><%= auction.id = 1 %></td>
+    <td><%= auction.baseinfo = "Bear" %></td>
+    <td><%= auction.price = 20 %></td>
+    <td><%= auction.seller_name = "Jason" %></td>
+    <td><%= auction.start_time = "12:00" %></td>
+    <td><% %></td>
+   </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to "Submit" %>

@@ -1,8 +1,5 @@
 class AuctionsController < ApplicationController
-
-	def home
-	end
-
-	def newpost
-	end
+  def home
+   @auctions = Auction.all
+  end
 end

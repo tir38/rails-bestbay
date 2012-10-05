@@ -1,5 +1,0 @@
-class Auction < ActiveRecord::Base
-   attr_accessible :id, :price
-  
-  
-end

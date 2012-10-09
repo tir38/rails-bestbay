@@ -7,7 +7,6 @@
   <thead>
   <tr>
     <th>Product</th>
-    <th>ID</th>
     <th>Base information</th>
     <th>Price</th>
     <th>Seller name</th>
@@ -18,10 +17,9 @@
   <tbody>
   <% @auctions.each do |auction| %>
     <tr>
-    <td><%= auction.Product %></td>
-    <td><%= auction.id %></td>
+    <td><%= auction.product %></td>
     <td><%= auction.baseinfo %></td>
-    <td><%= auction.price = 20 %></td>
+    <td><%= auction.price %></td>
     <td><%= auction.seller_name %></td>
     <td><%= auction.start_time %></td>
     <td><% %></td>

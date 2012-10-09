@@ -16,13 +16,13 @@ describe Auction do  # tests for the model
 		testAuction.should_not be_valid
 	end
 	
-	it 'is not valid without a Product' do
+	it 'is not valid without a product' do
 		testAuction.price = 12.00
 		testAuction.should_not be_valid
 	end
 	
 	it 'is not valide without a start time' do
-		testAuction.Product = 'dummy product name'
+		testAuction.product = 'dummy product name'
 		testAuction.should_not be_valid
 	end
 end

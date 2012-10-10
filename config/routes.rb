@@ -1,6 +1,8 @@
 BestBay::Application.routes.draw do
 
 	get "auctions/home"
+	get "auctions/new"
+	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

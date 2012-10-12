@@ -1,7 +1,12 @@
 BestBay::Application.routes.draw do
 
-	get "auctions/home"
-	get "auctions/new"
+	#get "auctions/home"
+	#get "auctions/new"
+	
+		resources :auctions 
+
+	match 'auctions' => "recipes#index" 	
+	match 'auctions/new' => "recipes#new"
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,3 +1,30 @@
-<h1>New Post</h1>
+<div class="center">
+<%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
 
+</div>
+<h1> Create New Auction </h1>
 
+<div class = "row">
+	 <div class = "span6 offset3">
+		<%= form_for(@auction) do |a| %>
+			<%= a.label :seller_name %>
+			<%= a.text_field :seller_name %>
+			
+			<%= a.label :baseinfo %>
+			<%= a.text_field :baseinfo %>
+			
+			<%= a.label :product %>
+			<%= a.text_field :product %>
+			
+			<%= a.label :price %>
+			<%= a.text_field :price %>
+			
+			<%= a.label :start_time %>
+			<%= a.text_field :start_time %>
+		
+			<%= a.submit "Submit auction",  class: "btn btn-large btn-primary"  %>
+		<% end %>
+	 </div>
+</div>
+
+	

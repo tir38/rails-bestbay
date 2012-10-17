@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20121017142943) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.decimal  "price"
-    t.integer  "id"
     t.string   "product"
     t.string   "seller_name"
     t.string   "baseinfo"

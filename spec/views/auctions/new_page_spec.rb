@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "New Post page" do
-  before { visit '/auctions/new'}
+  before { visit new_path}
   it "should render the New Post page" do
     
     page.should_not have_content("404")
@@ -26,7 +26,7 @@ describe "New Post page" do
 		fill_in "Product", with: "example product" # add this to view, not in balsamiq
 	end # before
 	it "should create new post" do
-		expect {click_button submit}.to change(Auction, :count).by(1)
+		expect { click_button submit }.to change(Auction, :count).by(1)
 	end
   end
   

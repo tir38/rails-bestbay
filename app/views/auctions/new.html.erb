@@ -1,11 +1,11 @@
 <div class="center">
 <%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
-
 </div>
-<h1> Create New Auction </h1>
 
 <div class = "row">
 	 <div class = "span6 offset3">
+
+       <h1> Create New Auction </h1>
 		<%= form_for(@auction) do |a| %>
 			<%= a.label :seller_name %>
 			<%= a.text_field :seller_name %>
@@ -21,8 +21,8 @@
 			
 			<%= a.label :start_time %>
 			<%= a.text_field :start_time %>
-		
-			<%= a.submit "Submit auction",  class: "btn btn-large btn-primary"  %>
+            <div><%= a.submit "Submit auction",  class: "btn btn-primary"  %>
+                  <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %> </div>
 		<% end %>
 	 </div>
 </div>

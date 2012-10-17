@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  def index
+  def home
    @auctions = Auction.all
   end
   
@@ -10,11 +10,11 @@ class AuctionsController < ApplicationController
   def create
 	@auction = Auction.new(params[:auction])
     if @auction.save
-      redirect_to '/auctions'
+      redirect_to root_path
     else
       render 'new'
     end
-  
   end
-  
+
+
 end

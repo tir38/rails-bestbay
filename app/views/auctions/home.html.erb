@@ -2,7 +2,7 @@
 <%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
 
 </div>
-<%= link_to "New Post"%>
+<%= link_to "New Post", new_path, class: "btn btn-success" %>
 <table class="table">
   <thead>
   <tr>
@@ -27,4 +27,8 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to "Submit" %>
+
+
+<div style="float: right;">
+<%= link_to "Submit",'#' ,class: "btn btn-primary" %>
+</div>

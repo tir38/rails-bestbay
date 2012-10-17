@@ -3,10 +3,11 @@ BestBay::Application.routes.draw do
 	#get "auctions/home"
 	#get "auctions/new"
 	
-		resources :auctions 
+		resources :auctions
+  root to: 'auctions#home'
+	match '/new', to: 'auctions#new'
 
-	match 'auctions' => "recipes#index" 	
-	match 'auctions/new' => "recipes#new"
+  end
 	
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -64,4 +65,4 @@ BestBay::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-end
+

@@ -4,8 +4,9 @@ BestBay::Application.routes.draw do
 	#get "auctions/new"
 	
 		resources :auctions
-  root to: 'auctions#home'
+	root to: 'auctions#home'
 	match '/new', to: 'auctions#new'
+	match '/placeBids', to: 'auctions#placeBids'
 
   end
 	

@@ -3,6 +3,8 @@
 
 </div>
 <%= link_to "New Post", new_path, class: "btn btn-success" %>
+<%= form_tag '/placeBids' do%>
+
 <table class="table">
   <thead>
   <tr>
@@ -15,20 +17,29 @@
   </tr>
   </thead>
   <tbody>
+
+
+
   <% @auctions.each do |auction| %>
     <tr>
     <td><%= auction.product %></td>
     <td><%= auction.baseinfo %></td>
-    <td><%= auction.price %></td>
+    <td id = <%="tagID_#{auction.id}"%>  ><%= auction.price %></td>
     <td><%= auction.seller_name %></td>
     <td><%= auction.start_time %></td>
-    <td><% %></td>
+    <td><%= check_box_tag "checkbox#{auction.id}"%></td>
    </tr>
-  <% end %>
+  <% end # end auction.each do%>
   </tbody>
 </table>
 
+    <div style= "float: right;">
+    <%= text_field_tag 'Bidder_email', nil, :placeholder => 'Enter your email...'%><br>
+    <div style= "float: right;">
+    <%= submit_tag 'Place Bids' , class:"btn btn-primary" %>
+    </div>
+    </div>
+<% end # end form_for %>
 
-<div style="float: right;">
-<%= link_to "Submit",'#' ,class: "btn btn-primary" %>
-</div>
+
+

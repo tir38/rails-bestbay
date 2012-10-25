@@ -1,11 +1,11 @@
 require "spec_helper"
 
 describe "Home page =>" do
-  @testAuction = Auction.create(:product => "test", :price => 10, :start_time => "10:00:00")
-  # populate testDB
-  # if you just ran rake db:test:prepare, then the test DB is empty
 
   before(:each) do
+    # must put factory creation inside before(:each) or FG won't know to get rid of it at the end of the
+    # test. i.e. the next time you run this test you'll have two instances in DB, instead of one.
+    @testAuction = FactoryGirl.create(:auction) # saved auction
 		visit root_path
   end
   
@@ -21,23 +21,21 @@ describe "Home page =>" do
 		  #expect { click_button submit }.to cause error
 		end
 
-    puts "\n\n----- REMINDER Auction test database has #{Auction.all.size} entries. ----- \n"
+
 		describe "when bidding on single auction =>"  do
 			@auctions = Auction.all
+
+      puts "\n\n----- REMINDER Auction test database has #{Auction.all.size} entries. ----- \n"
 			@auctions.each do |auction|
 
 				it "should increase the price of a checked auction '#{auction.product}' by $1." do
-					check (auction.id.to_s)
-          puts "according to spec, auction price before click is #{auction.price}"
-          click_button bid
-          visit root_path
-          puts "according to spec, auction price after click and revisit is #{auction.price}"
-          page.should have_content('11')
-          pending
-          # this isn't working
-					#expect {click_button bid}.to change {auction.price}.from(auction.price).to(auction.price + 1)
+
+          check (auction.id.to_s)
+          puts "according to spec, auction price before click is #{auction.price}"  # => 10
+          expect {click_button bid}.to change {auction.price}.from(auction.price).to(auction.price + 1)
 				end
 
+        puts "according to spec, auction price after click and revisit is #{auction.price}"  # 10
 
 				it "should update the current highest bidder email." do
 					pending

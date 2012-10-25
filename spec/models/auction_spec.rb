@@ -2,37 +2,37 @@
 #
 # Table name: auctions
 #
+#  id                 :integer          not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  price              :decimal(, )
-#  id                 :integer
 #  product            :string(255)
 #  seller_name        :string(255)
 #  baseinfo           :string(255)
 #  start_time         :string(255)
 #  highestBidderEmail :string(255)
+#  bid                :boolean
 #
 
 require 'spec_helper'
 describe Auction do  # tests for the model
-	# model attributes :id, :price, :Product, :baseinfo, :seller_name, :start_time
-	
-	testAuction = Auction.new()
 
-	#testAuction = FactoryGirl.create(:emptyAuction)
+  before(:each) do  # new factory for each of the following tests
+	  @testAuction = FactoryGirl.build(:auction) # non saved auction
+  end
 
-	it 'is not valid without a price' do
-		# not the best way of doing this
-		testAuction.should_not be_valid
+	it 'is not valid without a price.' do
+		@testAuction.price = nil
+    @testAuction.should_not be_valid
 	end
 	
-	it 'is not valid without a product' do
-		testAuction.price = 12.00
-		testAuction.should_not be_valid
+	it 'is not valid without a product.' do
+		@testAuction.product = nil
+		@testAuction.should_not be_valid
 	end
 	
-	it 'is not valide without a start time' do
-		testAuction.product = 'dummy product name'
-		testAuction.should_not be_valid
+	it 'is not valid without a start time.' do
+		@testAuction.start_time = nil
+		@testAuction.should_not be_valid
 	end
 end

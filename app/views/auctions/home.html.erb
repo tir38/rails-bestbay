@@ -19,7 +19,6 @@
   <tbody>
 
 
-
   <% @auctions.each do |auction| %>
     <tr>
     <td><%= auction.product %></td>
@@ -27,7 +26,7 @@
     <td id = <%="tagID_#{auction.id}"%>  ><%= auction.price %></td>
     <td><%= auction.seller_name %></td>
     <td><%= auction.start_time %></td>
-    <td><%= check_box_tag "checkbox#{auction.id}"%></td>
+    <td><%= check_box_tag auction.id%></td>
    </tr>
   <% end # end auction.each do%>
   </tbody>

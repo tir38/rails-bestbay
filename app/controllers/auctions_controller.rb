@@ -10,6 +10,7 @@ class AuctionsController < ApplicationController
   def create
 		@auction = Auction.new(params[:auction])
 		if @auction.save
+    flash[:success] = "Auction updated"
 		redirect_to root_path
 		else
 		render 'new'
@@ -26,7 +27,7 @@ class AuctionsController < ApplicationController
         auction.price = auction.price + 1
         auction.highestBidderEmail = params[:Bidder_email]
         auction.save
-        flash[:success] =  "just updated #{auction.product} with price = #{auction.price}, and set highest bidder email #{auction.highestBidderEmail}"
+        flash[:success] =  "Just updated #{auction.product} with price = #{auction.price}, and set highest bidder email #{auction.highestBidderEmail}"
       end
 		end
 		redirect_to root_path

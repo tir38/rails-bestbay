@@ -4,7 +4,6 @@
 </div>
 <%= link_to "New Post", new_path, class: "btn btn-success" %>
 <%= form_tag '/placeBids' do%>
-
 <table class="table">
   <thead>
   <tr>
@@ -17,8 +16,6 @@
   </tr>
   </thead>
   <tbody>
-
-
 
   <% @auctions.each do |auction| %>
     <tr>

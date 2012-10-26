@@ -16,7 +16,9 @@
 class Auction < ActiveRecord::Base
 
 	attr_accessible  :price, :product, :baseinfo, :seller_name, :start_time, :highestBidderEmail
-  
-	validates  :price, :product, :start_time, :presence => true
 
+	validates  :price,  :start_time, :presence => true
+  validates :baseinfo, length: { maximum: 50 }
+  validates :seller_name, length: { maximum: 10 }
+  validates :product, presence: true, length: { maximum: 15 }
 end

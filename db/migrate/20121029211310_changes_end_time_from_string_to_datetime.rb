@@ -1,13 +1,11 @@
 class ChangesEndTimeFromStringToDatetime < ActiveRecord::Migration
   def up
-    change_table :auctions do |t|
-      t.change :end_time, :datetime
-    end
+    remove_column :auctions, :end_time
+    add_column :auctions, :end_time, :datetime
   end
 
   def down
-    change_table :auctions do |t|
-      t.change :end_time, :string
-    end
+    remove_column :auctions, :end_time, :datetime
+    add_column :auctions, :end_time, :string
   end
 end

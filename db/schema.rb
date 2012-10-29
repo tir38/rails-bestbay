@@ -14,17 +14,17 @@
 ActiveRecord::Schema.define(:version => 20121029211310) do
 
   create_table "auctions", :force => true do |t|
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.decimal  "price"
     t.string   "product"
     t.string   "seller_name"
     t.string   "baseinfo"
-    t.datetime "end_time",           :limit => 255
     t.string   "highestBidderEmail"
     t.boolean  "bid"
     t.integer  "days"
     t.integer  "hours"
+    t.datetime "end_time"
   end
 
 end

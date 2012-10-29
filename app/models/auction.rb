@@ -16,10 +16,13 @@
 
 class Auction < ActiveRecord::Base
 
-	attr_accessible  :price, :product, :baseinfo, :seller_name, :start_time, :highestBidderEmail
+	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail, :days, :hours
 
-	validates  :price,  :start_time, :presence => true
+	validates  :price, presence: true
   validates :baseinfo, length: { maximum: 50 }
-  validates :seller_name, length: { maximum: 10 }
-  validates :product, presence: true, length: { maximum: 15 }
+  validates :seller_name, length: { maximum: 50 }
+  validates :product, presence: true, length: { maximum: 50 }
+  validates :days,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
+  validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
+
 end

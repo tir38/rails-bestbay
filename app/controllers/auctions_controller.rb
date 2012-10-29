@@ -9,6 +9,10 @@ class AuctionsController < ApplicationController
 
   def create
 		@auction = Auction.new(params[:auction])
+    puts "///////////////////////"
+    puts @auction.days
+    time = @auction.days*24 + @auction.hours
+    @auction.end_time = time.hours.from_now.utc
 		if @auction.save
     flash[:success] = "Auction updated"
 		redirect_to root_path
@@ -18,16 +22,16 @@ class AuctionsController < ApplicationController
 	end
 	
 	def placeBids ()
-
+         puts 'inside placeBids'
     @auctions = Auction.all
     @auctions.each do |auction|
-      if params.keys.include?( "checkbox#{auction.id}")
+      if params.keys.include?( "#{auction.id}")
         # we are assuming that if key is present then checkbox was checked
         # if checkbox was not checked then it will not even be added to params hash
         auction.price = auction.price + 1
         auction.highestBidderEmail = params[:Bidder_email]
         auction.save
-        flash[:success] =  "Just updated #{auction.product} with price = #{auction.price}, and set highest bidder email #{auction.highestBidderEmail}"
+        flash[:success] =  "Just updated  with price, and set highest bidder email"
       end
 		end
 		redirect_to root_path

@@ -11,8 +11,10 @@ describe "New Post page" do
   
   let(:submit) {"Submit auction"}
   
-  describe "with zero form data" do
+  describe "with limited form data" do
 	it "should not create new post." do
+    fill_in "Days", 	with: 5
+    fill_in "Hours", with: 0
 		expect {click_button submit}.not_to change(Auction, :count)
 	end
   end
@@ -22,7 +24,8 @@ describe "New Post page" do
 		fill_in "Seller name", 	with: "example seller"
 		fill_in "Baseinfo", 	with: "example description" # do we need this, not mandatory?
 		fill_in "Price", 		with: 10
-		fill_in "Start time", 	with: "12:00:00"
+		fill_in "Days", 	with: 5
+    fill_in "Hours", with: 0
 		fill_in "Product", with: "example product" # add this to view, not in balsamiq
 	end # before
 	it "should create new post." do

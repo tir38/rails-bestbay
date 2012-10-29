@@ -18,9 +18,13 @@
 			
 			<%= a.label :price %>
 			<%= a.text_field :price %>
-			
-			<%= a.label :start_time %>
-			<%= a.text_field :start_time %>
+
+			<%= a.label :days %>
+			<%= a.text_field :days %>
+
+            <%= a.label :hours %>
+            <%= a.text_field :hours %>
+
             <div><%= a.submit "Submit auction",  class: "btn btn-primary"  %>
                   <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %> </div>
 		<% end %>

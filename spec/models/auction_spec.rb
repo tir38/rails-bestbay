@@ -31,8 +31,13 @@ describe Auction do  # tests for the model
 		@testAuction.should_not be_valid
 	end
 	
-	it 'is not valid without a start time.' do
-		@testAuction.start_time = nil
+	it 'is not valid without a days.' do
+		@testAuction.days = nil
 		@testAuction.should_not be_valid
-	end
+  end
+  it 'is not valid without a hours.' do
+    @testAuction.hours = nil
+    @testAuction.should_not be_valid
+  end
+
 end

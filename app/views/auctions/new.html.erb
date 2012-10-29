@@ -4,9 +4,9 @@
 
 <div class = "row">
 	 <div class = "span6 offset3">
-
        <h1> Create New Auction </h1>
 		<%= form_for(@auction) do |a| %>
+           <%= render 'shared/error_messages', object: a.object %>
 			<%= a.label :seller_name %>
 			<%= a.text_field :seller_name %>
 			

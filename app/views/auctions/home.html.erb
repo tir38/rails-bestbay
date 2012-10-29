@@ -4,7 +4,6 @@
 </div>
 <%= link_to "New Post", new_path, class: "btn btn-success" %>
 <%= form_tag '/placeBids' do%>
-
 <table class="table">
   <thead>
   <tr>
@@ -18,7 +17,10 @@
   </thead>
   <tbody>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> validate product,baseinfo,sellername and make flash messages worked
   <% @auctions.each do |auction| %>
     <tr>
     <td><%= auction.product %></td>

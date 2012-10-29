@@ -7,6 +7,7 @@ FactoryGirl.define do
 	  price		10.00
 	  product		'book shelf'
 	  baseinfo	'tall, wooden 3 shelves'
-	  start_time 	'12:00:00'
+    days  10
+    hours 0
 	 end
 end

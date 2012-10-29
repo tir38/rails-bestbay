@@ -11,25 +11,23 @@
     <th>Base information</th>
     <th>Price</th>
     <th>Seller name</th>
-    <th>Start time</th>
+    <th>End time</th>
     <th>Bid</th>
   </tr>
   </thead>
   <tbody>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> validate product,baseinfo,sellername and make flash messages worked
   <% @auctions.each do |auction| %>
+  <% if Time.now < auction.end_time %>
     <tr>
     <td><%= auction.product %></td>
     <td><%= auction.baseinfo %></td>
     <td id = <%="tagID_#{auction.id}"%>  ><%= auction.price %></td>
     <td><%= auction.seller_name %></td>
-    <td><%= auction.start_time %></td>
+    <td><%= auction.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
     <td><%= check_box_tag auction.id%></td>
    </tr>
+    <% end %>
   <% end # end auction.each do%>
   </tbody>
 </table>

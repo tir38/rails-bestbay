@@ -27,14 +27,13 @@ class AuctionsController < ApplicationController
       if params.keys.include?( "#{auction.id}")
         # we are assuming that if key is present then checkbox was checked
         # if checkbox was not checked then it will not even be added to params hash
-        puts params.keys
-        if params.keys.include?("Bidder_email")
+        if params[:Bidder_email].empty?
+          flash[:error] =  "Bidder email can't be blank"
+        else
           auction.price = auction.price + 1
           auction.highestBidderEmail = params[:Bidder_email]
           auction.save
           flash[:success] =  "Just updated  with price, and set highest bidder email"
-        else
-          flash[:alert] =  "Bidder email can't be blank"
         end
       end
     end

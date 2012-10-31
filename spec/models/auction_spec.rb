@@ -35,6 +35,7 @@ describe Auction do  # tests for the model
 		@testAuction.days = nil
 		@testAuction.should_not be_valid
   end
+
   it 'is not valid without a hours.' do
     @testAuction.hours = nil
     @testAuction.should_not be_valid

@@ -13,8 +13,6 @@ describe "New Post page" do
   
   describe "with limited form data" do
 	it "should not create new post." do
-    fill_in "Days", 	with: 5
-    fill_in "Hours", with: 0
 		expect {click_button submit}.not_to change(Auction, :count)
 	end
   end

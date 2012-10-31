@@ -17,6 +17,7 @@
 class Auction < ActiveRecord::Base
 
 	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail, :days, :hours
+  #before_save {|auction| auction.highestBidderEmail = highestBidderEmail.downcase }
 
 	validates  :price, presence: true
   validates :baseinfo, length: { maximum: 50 }

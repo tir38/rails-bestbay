@@ -9,15 +9,12 @@ class AuctionsController < ApplicationController
 
   def create
 		@auction = Auction.new(params[:auction])
-    puts "///////////////////////"
-    puts @auction.days
-    time = @auction.days*24 + @auction.hours
-    @auction.end_time = time.hours.from_now.utc
-		if @auction.save
-    flash[:success] = "Auction updated"
-		redirect_to root_path
+  if @auction.save
+      time = @auction.days*24 + @auction.hours
+      @auction.end_time = time.hours.from_now.utcflash[:success] = "Auction updated"
+      redirect_to root_path
 		else
-		render 'new'
+		  render 'new'
 		end
 	end
 	

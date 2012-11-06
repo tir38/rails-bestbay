@@ -1,12 +1,16 @@
 BestBay::Application.routes.draw do
 
-	#get "auctions/home"
-	#get "auctions/new"
-	
-		resources :auctions
+  resources :users
+  resources :auctions
+  resources :sessions, only: [:new, :create, :destroy]
+
 	root to: 'auctions#home'
+
 	match '/new', to: 'auctions#new'
 	match '/placeBids', to: 'auctions#placeBids'
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
   end
 	

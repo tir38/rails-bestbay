@@ -5,6 +5,7 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
 gem 'jquery-rails'
 gem 'annotate', ">=2.5.0"
+gem 'bcrypt-ruby', '3.0.1'
 
 group :development, :test do
    gem 'sqlite3'

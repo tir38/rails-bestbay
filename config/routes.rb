@@ -3,7 +3,7 @@ BestBay::Application.routes.draw do
 	#get "auctions/home"
 	#get "auctions/new"
 	
-		resources :auctions
+	resources :auctions
 	root to: 'auctions#home'
 	match '/new', to: 'auctions#new'
 	match '/placeBids', to: 'auctions#placeBids'

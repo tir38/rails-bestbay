@@ -10,11 +10,9 @@ describe "When bidding =>" do
     visit root_path
   end
 
-
   describe "when bidding on single auction =>"  do
     @auctions = Auction.all
 
-    puts "\n\n----- REMINDER Auction test database has #{Auction.all.size} entries. ----- \n"
     @auctions.each do |auction|
 
       it "should increase the price of a checked auction '#{auction.product}' by $1." do

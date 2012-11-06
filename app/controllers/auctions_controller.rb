@@ -9,19 +9,30 @@ class AuctionsController < ApplicationController
 
   def create
 		@auction = Auction.new(params[:auction])
-  if @auction.save
+
+    # REFACTOR ALL OF THIS LOGIC INTO THE MODEL
+    if @auction.days.nil? or @auction.hours.nil?
+      flash[:error] = "days and hours can't be NIL"
+      render 'new'
+    else
       time = @auction.days*24 + @auction.hours
       @auction.end_time = time.hours.from_now.utc
-      @auction.save
-      flash[:success] = "Auction updated"
-      redirect_to root_path
-		else
-		  render 'new'
-		end
+
+      if time < 1
+        flash[:error] = "Auction duration cannot be less than 1 hour."
+        render 'new'
+      else
+        if @auction.save
+          flash[:success] = "Auction updated"
+          redirect_to root_path
+        else
+          render 'new'
+        end
+      end
+    end
 	end
 	
 	def placeBids ()
-         puts 'inside placeBids'
     @auctions = Auction.all
     @auctions.each do |auction|
       if params.keys.include?( "#{auction.id}")

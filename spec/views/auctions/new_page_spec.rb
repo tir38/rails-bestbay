@@ -17,9 +17,10 @@ describe "New Post page" do
   end
 
   describe "with wrong values" do
-    it "should not create new post with duration less than one hour."  do
+
+    it "should not create new post with duration less than 1." do
       fill_in "Seller name", 	with: "example seller"
-      fill_in "Baseinfo", 	with: "example description" # do we need this, not mandatory?
+      fill_in "Baseinfo", 	with: "example description"
       fill_in "Price", 		with: 10
       fill_in "Days", 	with: 0
       fill_in "Hours", with: 0
@@ -32,7 +33,7 @@ describe "New Post page" do
   describe "with valid form data" do
     before do
       fill_in "Seller name", 	with: "example seller"
-      fill_in "Baseinfo", 	with: "example description" # do we need this, not mandatory?
+      fill_in "Baseinfo", 	with: "example description"
       fill_in "Price", 		with: 10
       fill_in "Days", 	with: 5
       fill_in "Hours", with: 0

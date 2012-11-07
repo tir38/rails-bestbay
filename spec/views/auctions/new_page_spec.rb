@@ -28,6 +28,17 @@ describe "New Post page" do
       expect { click_button submit }.to_not change(Auction, :count).by(1)
       #page.should have_content ("Cannot create auction with zero duration")
     end
+
+    it "should not create new post with negative price" do
+      fill_in "Seller name", 	with: "example seller"
+      fill_in "Baseinfo", 	with: "example description"
+      fill_in "Price", 		with: -10
+      fill_in "Days", 	with: 2
+      fill_in "Hours", with: 1
+      fill_in "Product", with: "example product"
+      expect { click_button submit }.to_not change(Auction, :count).by(1)
+      page.should have_content ("Price must be greater than 0")
+    end
   end
 
   describe "with valid form data" do

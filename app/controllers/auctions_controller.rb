@@ -9,19 +9,17 @@ class AuctionsController < ApplicationController
 
   def create
 		@auction = Auction.new(params[:auction])
-  if @auction.save
-      time = @auction.days*24 + @auction.hours
-      @auction.end_time = time.hours.from_now.utc
-      @auction.save
-      flash[:success] = "Auction updated"
+
+    if @auction.save # if auction validates
+      @auction.compute_end_time
       redirect_to root_path
-		else
-		  render 'new'
-		end
-	end
+    else
+      render 'new'
+    end
+  end
+
 	
 	def placeBids ()
-         puts 'inside placeBids'
     @auctions = Auction.all
     @auctions.each do |auction|
       if params.keys.include?( "#{auction.id}")

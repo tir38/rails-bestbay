@@ -3,8 +3,7 @@ BestBay::Application.routes.draw do
   resources :users
   resources :auctions
   resources :sessions, only: [:new, :create, :destroy]
-
-	root to: 'auctions#home'
+g	root to: 'auctions#home'
 
 	match '/new', to: 'auctions#new'
 	match '/placeBids', to: 'auctions#placeBids'

@@ -9,9 +9,11 @@
 #  product            :string(255)
 #  seller_name        :string(255)
 #  baseinfo           :string(255)
-#  start_time         :string(255)
 #  highestBidderEmail :string(255)
 #  bid                :boolean
+#  days               :integer
+#  hours              :integer
+#  end_time           :datetime
 #
 
 class Auction < ActiveRecord::Base
@@ -26,4 +28,19 @@ class Auction < ActiveRecord::Base
   validates :days,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
 
+
+  def compute_end_time
+    # assumes that days and hours are already valid
+    time = self.days*24 + self.hours
+
+    if time > 1
+      self.end_time =  time.hours.from_now.utc
+      self.save
+
+    else
+      self.errors[:base] << "Auction duration too short"
+      self.delete
+
+    end
+  end
 end

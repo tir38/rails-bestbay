@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20121106034730) do
     t.string   "seller_name"
     t.string   "baseinfo"
     t.string   "highestBidderEmail"
-    t.boolean  "bid"
     t.integer  "days"
     t.integer  "hours"
     t.datetime "end_time"

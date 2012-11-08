@@ -1,4 +1,7 @@
 class AuctionsController < ApplicationController
+
+  respond_to :html
+
 	def home
 		@auctions = Auction.all
 	end
@@ -9,16 +12,18 @@ class AuctionsController < ApplicationController
 
   def create
 		@auction = Auction.new(params[:auction])
-
     if @auction.save # if auction validates
-      @auction.compute_end_time
       redirect_to root_path
     else
       render 'new'
     end
   end
 
-	
+	def show
+    @auction = Auction.find(params[:id])
+    respond_with @auction
+  end
+
 	def placeBids ()
     @auctions = Auction.all
     @auctions.each do |auction|

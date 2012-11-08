@@ -27,7 +27,7 @@
   <% @auctions.each do |auction| %>
   <% if Time.now < auction.end_time %>
     <tr>
-    <td><%= auction.product %></td>
+    <td><%= link_to "#{auction.product}", "/auctions/#{auction.id}" %></td>
     <td><%= auction.baseinfo %></td>
     <td id = <%="tagID_#{auction.id}"%>  ><%= auction.price %></td>
     <td><%= auction.seller_name %></td>

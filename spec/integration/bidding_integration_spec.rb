@@ -33,4 +33,18 @@ describe "When bidding =>" do
       end
     end
   end
+
+  describe "after bidding on single auction" do
+    describe "show page of the auction" do
+      it "should show new highest bidder email" do
+        pending  ('is this a case we want to test?')
+      end
+
+      it "should show new current bid" do
+        pending   ('is this a case we want to test?')
+      end
+
+    end
+  end
+
 end

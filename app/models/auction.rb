@@ -28,19 +28,21 @@ class Auction < ActiveRecord::Base
   validates :days,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
 
+  validate :days_and_hours
 
-  def compute_end_time
-    # assumes that days and hours are already valid
-    time = self.days*24 + self.hours
+  def days_and_hours
+    # it may not validate days and hours before days_and_hours
+    # so I need to make sure that days and hours are both not NIL before trying to compute 'time'
 
-    if time > 1
-      self.end_time =  time.hours.from_now.utc
-      self.save
+    if (!self.days.nil? && !self.hours.nil?)
 
-    else
-      self.errors[:base] << "Auction duration too short"
-      self.delete
-
+      if (self.days == 0 && self.hours == 0)
+        self.errors[:base] << "Days and hours can not be zero."
+      else
+        time = self.days*24 + self.hours
+        self.end_time =  time.hours.from_now.utc
+      end
     end
   end
+
 end

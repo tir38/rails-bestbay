@@ -12,10 +12,9 @@ describe "Home page" do
 	end
 
   context "when user is signed in"  do
-
-    let(:user) { FactoryGirl.create(:user)} # create user
-    # sign_in :user # and sign in
-    # not finding method sign_in
+    let(:user) {FactoryGirl.create(:user)}  # 2.
+    #sign_in user # and sign in
+    # visit root_path
 
     context "when no checkboxes checked, no email entered, and Place Bids button clicked"  do
 
@@ -74,6 +73,25 @@ describe "Home page" do
       end
     end
   end
+
+  # --------------------------------------------------------------------
+  describe "links on the page" do
+
+    before (:each) do
+      @testAuction = FactoryGirl.create(:auction)
+      visit root_path
+    end
+    describe "presence of link(s)" do
+      it "link to individual auction should exist" do
+        page.should have_link("#{@testAuction.product}", {:href => "/auctions/#{@testAuction.id}"} )
+      end
+    end
+
+    describe "response of clicking link(s)" do
+      # the response of these links is now in integration tests
+    end
+  end
+
 
 end
 

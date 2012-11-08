@@ -1,5 +1,10 @@
 <% provide(:title, @user.name) %>
-<h1><%= @user.name %></h1>
-<%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %>
-<%= link_to "Settings", '#', class: "btn btn-success" %>
-<%= link_to "Sign out", signout_path, method: "delete" ,class: "btn btn-success" %>
+<div style= "float: left;">
+    <h1><%= @user.name %></h1>
+    <p><%= @user.email %></p>
+</div>
+<div style= "float: right;">
+    <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %>
+    <%= link_to "Settings", edit_user_path(current_user), class: "btn btn-success" %>
+    <%= link_to "Sign out", signout_path, method: "delete" ,class: "btn btn-success" %>
+</div>

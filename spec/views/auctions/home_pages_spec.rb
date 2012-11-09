@@ -12,9 +12,11 @@ describe "Home page" do
 	end
 
   context "when user is signed in"  do
-    let(:user) {FactoryGirl.create(:user)}  # 2.
-    #sign_in user # and sign in
-    # visit root_path
+    let(:user) { FactoryGirl.create(:user) }  # 2.
+    before do
+      sign_in user # and sign in
+      visit root_path
+    end
 
     context "when no checkboxes checked, no email entered, and Place Bids button clicked"  do
 

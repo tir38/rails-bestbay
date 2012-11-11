@@ -21,10 +21,10 @@ describe "Authentication" do
     end
 
     describe "with valid information" do
-      let(:user) { FactoryGirl.create(:user)}
+      let(:user2) { FactoryGirl.create(:user2)}
       before do
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user.password
+        fill_in "Email", with: user2.email
+        fill_in "Password", with: user2.password
         click_button "Sign in"
       end
       it { should have_link('Sign out', href: signout_path) }

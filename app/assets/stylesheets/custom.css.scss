@@ -13,6 +13,7 @@ $grayMediumLight: #eaeaea;
 
  body {
    padding-top: 60px;
+   font-family: Comic Sans MS;
  }
 
  section {
@@ -28,6 +29,10 @@ $grayMediumLight: #eaeaea;
    h1 {
      margin-bottom: 10px;
    }
+ }
+
+ #emphasize {
+   color: #ff0000;
  }
 
 

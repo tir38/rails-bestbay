@@ -18,29 +18,33 @@
 
 require 'spec_helper'
 describe Auction do  # tests for the model
+    let(:user) { FactoryGirl.create(:user) }
+    before { @auction = user.auctions.build(seller_name:"bob", price:10.00, product:"book shelf",
+             baseinfo:"tall, wooden 3 shelves", days:2, hours:5, end_time: 53.hours.from_now.utc)}
+     subject { @auction }
 
-  before(:each) do  # new factory for each of the following tests
-	  @testAuction = FactoryGirl.build(:auction) # non saved auction
-  end
+    it { should respond_to(:seller_name)}
+    it { should respond_to(:price)}
+    it { should respond_to(:product)}
+    it { should respond_to(:baseinfo)}
+    it { should respond_to(:days)}
+    it { should respond_to(:hours)}
+    it { should respond_to(:end_time)}
+    it { should respond_to(:user_id) }
 
-	it 'is not valid without a price.' do
-		@testAuction.price = nil
-    @testAuction.should_not be_valid
-	end
-	
-	it 'is not valid without a product.' do
-		@testAuction.product = nil
-		@testAuction.should_not be_valid
-	end
-	
-	it 'is not valid without a days.' do
-		@testAuction.days = nil
-		@testAuction.should_not be_valid
-  end
+    it { should be_valid }
 
-  it 'is not valid without a hours.' do
-    @testAuction.hours = nil
-    @testAuction.should_not be_valid
-  end
+    describe "when user_id is not present" do
+      before { @auction.user_id = nil }
+      it { should_not be_valid }
+    end
+
+    describe "accessible attributes" do
+      it "should not allow access to user_id" do
+        expect do
+          Auction.new(user_id: user.id)
+        end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end
+    end
 
 end

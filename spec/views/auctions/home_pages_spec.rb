@@ -37,7 +37,7 @@ describe "Home page" do
     context "when checkbox checked, no email entered, and Place Bids button clicked" do
 
       before (:each) do
-        @testAuction = FactoryGirl.create(:auction) # saved auction, will be rolled back after test, automatically
+        @testAuction = FactoryGirl.create(:auction, user:user) # saved auction, will be rolled back after test, automatically
         visit root_path # revisit page after adding auction
       end
 

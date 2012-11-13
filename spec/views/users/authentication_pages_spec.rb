@@ -58,11 +58,24 @@ describe "Authentication" do
              it { should have_selector('title', text:'Sign in')}
         end
       end
+
+  #    describe "in the Auctions controller" do
+  #       describe "submitting to the create action" do
+  #         before { post auctions_path }
+  #         specify { response.should redirect_to(signin_path) }
+  #       end
+
+  #       describe "submitting to the destroy action" do
+  #          before { delete auction_path(FactoryGirl.create(:auction,user: user)) }
+  #         specify { response.should redirect_to(signin_path) }
+  #       end
+
+  #     end
     end
 
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
-      let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
+      let(:wrong_user) { FactoryGirl.create(:user, name:"zack", email: "wrong@example.com") }
       before { sign_in user }
 
       describe "visiting Users#edit page" do
@@ -77,6 +90,7 @@ describe "Authentication" do
         it { should_not have_selector('title', text: user.name) }
       end
     end
+
   end
 end
 

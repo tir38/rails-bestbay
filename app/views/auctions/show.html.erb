@@ -6,7 +6,7 @@
 <%=  @auction.baseinfo %> <br>
 
 <h2>Current Price: </h2>
-<%= @auction.price %>   <br>
+<%= "$ #{@auction.price} " %>   <br>
 
 <h2>End time:</h2>
 <%= @auction.end_time %>  <br>
@@ -15,7 +15,11 @@
 <%=  @auction.highestBidderEmail %> <br>
     <br>
 <br>
+<% if signed_in? %>
+<%= link_to "Return to Profile", current_user, class: "btn btn-success" %>
 <%= link_to "Return to Browsing", root_path, class: "btn btn-success" %>
-
+<% else %>
+<%= link_to "Return to Browsing", root_path, class: "btn btn-success" %>
+<% end %>
 
 

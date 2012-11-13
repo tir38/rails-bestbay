@@ -18,8 +18,10 @@
 
 class Auction < ActiveRecord::Base
 
-	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail, :days, :hours
+	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail,
+                   :days, :hours
   #before_save {|auction| auction.highestBidderEmail = highestBidderEmail.downcase }
+  belongs_to :user
 
 	validates  :price, presence: true,  :numericality => { :greater_than => 0}
   validates :baseinfo, length: { maximum: 50 }
@@ -27,8 +29,9 @@ class Auction < ActiveRecord::Base
   validates :product, presence: true, length: { maximum: 50 }
   validates :days,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
-
+  validates :user_id, presence:true
   validate :days_and_hours
+  default_scope order: 'auctions.created_at DESC'
 
   def days_and_hours
     # it may not validate days and hours before days_and_hours

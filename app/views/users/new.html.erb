@@ -2,9 +2,10 @@
 <div class="center">
   <%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
 </div>
-<div class = "row">
+ <div class = "row">
   <div class = "span6 offset3">
     <h1> Sign up </h1>
+    <br><br>
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.label :name %>
@@ -19,10 +20,13 @@
         <%= f.label :password_confirmation, "Confirm Password" %>
         <%= f.password_field :password_confirmation %>
 
-        <div><%= f.submit "Create my account",  class: "btn btn-primary"  %>
-          <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %> </div>
+        <div>
+          <br>
+          <%= f.submit "Create my account",  class: "btn btn-primary"  %>
+          <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %>
+        </div>
     <% end %>
+   </div>
   </div>
-</div>
 
 

@@ -23,9 +23,15 @@ class AuctionsController < ApplicationController
 
   def destroy
      @auction = current_user.auctions.find(params[:id])
-     @item = current_user.watch_lists.first(:conditions => { :auction_id => params[:id] })
-     @item.destroy
-     @auction.destroy
+     @item = WatchList.all(:conditions => { :auction_id => params[:id] })
+     if @item
+       @item.each do |i|
+         i.destroy
+       end
+     end
+     if @auction
+       @auction.destroy
+     end
      flash[:success] = "Auction deleted from your posted auctions."
      redirect_to current_user
   end
@@ -81,17 +87,16 @@ class AuctionsController < ApplicationController
 
   def deleteWatchlist
     @item = current_user.watch_lists.find(params[:item_id])
-    @item.destroy
+    if @item
+      @item.destroy
+    end
     flash[:success] = "Auction removed from your interested auctions."
     redirect_to current_user
   end
 
   def placeBid
-      puts "*************"
-      puts params[:amount]
      if !params[:amount].blank?
        amount = Integer(params[:amount])
-       puts amount
        @auction = Auction.find(params[:auction_id])
        @auction.price = @auction.price + amount
        @auction.highestBidderEmail = current_user.email

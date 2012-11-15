@@ -28,7 +28,9 @@
 <br><br>
 <% if signed_in? %>
  <% if @auction.user_id != current_user.id %>
-  <%= form_tag placeBid_path(:auction_id => @auction.id) do  %>
+  <!-- form_tag placeBid_path(:auction_id => @auction.id) do  -->
+  <%= form_tag :controller => "auctions", :action => "placeBid",
+      :auction_id => @auction.id  do %>
     <%= label_tag  '$' %>
     <%= number_field_tag(:amount, 1, { :min => 1 }) %>
     <br>

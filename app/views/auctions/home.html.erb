@@ -5,12 +5,13 @@
 
 <% if signed_in? %>
   <%= link_to current_user.name, current_user, class: "btn btn-success" %>
+  <%= link_to "Sign out", signout_path, method: "delete" ,class: "btn btn-success" %>
 <% else %>
   <%= link_to "Sign Up", signup_path, class: "btn btn-success" %>
   <%= link_to "Sign In", signin_path, class: "btn btn-success" %>
 <% end %>
 <br><br>
-<%= form_tag '/placeBids' do%>
+<%= form_tag '/addToWatchList' do%>
 <table class="table">
   <thead>
   <tr>
@@ -19,7 +20,7 @@
     <th>Price</th>
     <th>Seller name</th>
     <th>End time</th>
-    <th>Bid</th>
+    <th></th>
   </tr>
   </thead>
 
@@ -38,11 +39,9 @@
   <% end # end auction.each do%>
   </tbody>
 </table>
-    <% if signed_in? %>
       <div style= "float: right;">
-          <%= submit_tag 'Place Bids' , class:"btn btn-primary" %>
+          <%= submit_tag 'Add to watch list' , class:"btn btn-primary" %>
       </div>
-    <% end %>
 <% end # end form_for %>
 
 

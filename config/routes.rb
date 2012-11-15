@@ -6,13 +6,13 @@ BestBay::Application.routes.draw do
 
 	root to: 'auctions#home'
 
-  match "/users/new" => redirect("/signup")
   match '/new', to: 'auctions#new'
-	match '/placeBids', to: 'auctions#placeBids'
+	match '/addToWatchList', to: 'auctions#addToWatchList'
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+  match '/watchlists/delete/:item_id', to: 'auctions#deleteWatchlist'
+  match '/placeBid/:auction_id', to: 'auctions#placeBid'
   end
 	
   # The priority is based upon order of creation:

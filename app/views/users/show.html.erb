@@ -5,15 +5,14 @@
     <p><%= @user.email %></p>
 </div>
 <div style= "float: right;">
-    <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %>
+    <%= link_to "Auctions",root_path ,class: "btn btn-inverse" %>
     <%= link_to "New Post", new_path, class: "btn btn-success" %>
     <%= link_to "Settings", edit_user_path(current_user), class: "btn btn-success" %>
     <%= link_to "Sign out", signout_path, method: "delete" ,class: "btn btn-success" %>
 </div><br><br><br><br><br>
 <body>
     <% if @user.auctions.any? %>
-    <h3 class=center>My posted auctions(<%= @user.auctions.count %>)</h3>
-    <br>
+    <h3 class=center>My posted auctions(<%= @user.auctions.count %>)</h3><br>
         <table class="table">
           <thead>
           <tr>
@@ -21,7 +20,7 @@
             <th>Price</th>
             <th>End time</th>
             <th>Highest bidder email</th>
-            <th>Start time</th>
+            <th>Posted time</th>
           </tr>
           </thead>
           <tbody>
@@ -36,15 +35,48 @@
             <% end %>
             <td><%= auction.highestBidderEmail%></td>
             <td><%= "Posted  #{time_ago_in_words(auction.created_at)} ago." %></td>
-            <td>
-             <% if current_user?(auction.user) %>
-                <%= link_to "delete", auction, method: :delete,
-                            data: { confirm: "You sure?" } %>
-             <% end %>
+            <td><%= link_to "delete", auction, method: :delete,
+                            data: { confirm: "Delete auction can't be undo. You sure?" } %>
             </td>
           </tr>
           <% end%>
           </tbody>
         </table>
       <% end %>
-     </body>
+      <br><br><br><br><br>
+
+      <% if @user.watch_lists.any? %>
+      <h3 class=center>My interested auctions(<%= @user.watch_lists.count %>)</h3><br>
+      <table class="table">
+      <thead>
+        <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>End time</th>
+        <th>Seller name</th>
+        <th>Highest bidder email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.watch_lists.each do |item| %>
+        <% @item = Auction.find(item.auction_id) %>
+          <tr>
+            <td><%= link_to "#{ @item.product }", "/auctions/#{@item.id}" %></td>
+            <td><%= "$ #{@item.price}" %></td>
+            <% if Time.now < @item.end_time %>
+                <td><%= @item.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
+            <% else %>
+                <td id="emphasize"><%= "Auction Closed" %></td>
+            <% end %>
+            <td><%= @item.seller_name %></td>
+            <td><%= @item.highestBidderEmail%></td>
+            <td><%= link_to "delete", :controller => "auctions", :action => "deleteWatchlist",
+                            :item_id => item.id  %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+     </table>
+     <br><br>
+     <% end %>
+</body>

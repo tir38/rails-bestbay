@@ -1,6 +1,14 @@
 <% provide(:title, @auction.product) %>
-<h1>
-<%= @auction.product %></h1>
+
+<div style= "float: right;">
+  <% if signed_in? %>
+      <%= link_to current_user.name, current_user, class: "btn btn-success" %>
+  <% end %>
+  <%= link_to "Auctions", root_path, class: "btn btn-inverse" %>
+</div>
+
+<div style= "float: left;">
+<h1><%= @auction.product %></h1>
 
 <h2>Description:</h2>
 <%=  @auction.baseinfo %> <br>
@@ -12,14 +20,21 @@
 <%= @auction.end_time %>  <br>
 
 <h2>Current Highest Bidder:</h2>
-<%=  @auction.highestBidderEmail %> <br>
-    <br>
-<br>
-<% if signed_in? %>
-<%= link_to "Return to Profile", current_user, class: "btn btn-success" %>
-<%= link_to "Return to Browsing", root_path, class: "btn btn-success" %>
+<% if  @auction.highestBidderEmail.nil? %>
+  <%= "No one bid on this auction currently" %>
 <% else %>
-<%= link_to "Return to Browsing", root_path, class: "btn btn-success" %>
+  <%=  @auction.highestBidderEmail %>
 <% end %>
-
+<br><br>
+<% if signed_in? %>
+ <% if @auction.user_id != current_user.id %>
+  <%= form_tag placeBid_path(:auction_id => @auction.id) do  %>
+    <%= label_tag  '$' %>
+    <%= number_field_tag(:amount, 1, { :min => 1 }) %>
+    <br>
+    <%= submit_tag 'Place Bid' , class:"btn btn-primary" %>
+  <% end %>
+ <% end %>
+<% end %>
+</div>
 

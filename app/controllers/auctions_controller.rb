@@ -40,7 +40,19 @@ class AuctionsController < ApplicationController
         end
       end
     end
+
+    backgroundControllerAction # trigger background controller action when placing bid
     redirect_to root_path
   end # end placeBids
+
+
+  def backgroundControllerAction
+    puts '==================='
+    puts 'inside backgroundControllerAction'
+    puts '==================='
+
+    @testAuction = Auction.first
+    @testAuction.delay.backgroundModelMethod
+  end
 
 end

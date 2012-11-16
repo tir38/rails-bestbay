@@ -7,6 +7,9 @@ gem 'jquery-rails'
 gem 'annotate', ">=2.5.0"
 gem 'bcrypt-ruby', '3.0.1'
 
+gem 'whenever', :require => false
+
+
 group :development, :test do
    gem 'sqlite3'
   gem 'capybara'

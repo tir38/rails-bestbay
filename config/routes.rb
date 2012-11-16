@@ -1,16 +1,18 @@
 BestBay::Application.routes.draw do
 
-  resources :users
-  resources :auctions
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:show, :create, :edit, :update]
+  resources :auctions, only: [:show, :create, :destroy]
+  resources :sessions, only: [:create]
+
 	root to: 'auctions#home'
 
-	match '/new', to: 'auctions#new'
-	match '/placeBids', to: 'auctions#placeBids'
+  match '/new', to: 'auctions#new'
+	match '/addToWatchList', to: 'auctions#addToWatchList'
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-
+  match '/watchlists/delete/:item_id', to: 'auctions#deleteWatchlist'
+  match '/placeBid/:auction_id', to: 'auctions#placeBid'
   end
 	
   # The priority is based upon order of creation:

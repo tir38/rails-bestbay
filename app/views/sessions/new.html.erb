@@ -2,9 +2,11 @@
 <div class="center">
   <%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
 </div>
-<div class = "row">
-  <div class = "span6 offset3">
+
+  <div class = "row">
+    <div class = "span6 offset3">
     <h1> Sign in </h1>
+    <br><br>
     <%= form_for(:session, url: sessions_path) do |f| %>
 
         <%= f.label :email %>
@@ -13,11 +15,15 @@
         <%= f.label :password %>
         <%= f.password_field :password %>
 
-        <div><%= f.submit "Sign in",  class: "btn btn-primary"  %>
-          <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %> </div>
+        <div>
+          <br>
+          <%= f.submit "Sign in",  class: "btn btn-primary"  %>
+          <%= link_to "Auctions",root_path ,class: "btn btn-inverse" %>
+        </div>
     <% end %>
+    </div>
   </div>
-</div>
+
 
 
 

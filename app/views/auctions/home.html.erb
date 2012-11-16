@@ -1,16 +1,17 @@
 <% provide(:title, 'Home') %>
 <div class="center">
 <%= link_to image_tag("logo0.bmp", alt: "BestBay")%>
-
 </div>
-<%= link_to "New Post", new_path, class: "btn btn-success" %>
+
 <% if signed_in? %>
-  <%= link_to "Profile", current_user, class: "btn btn-success" %>
+  <%= link_to current_user.name, current_user, class: "btn btn-success" %>
+  <%= link_to "Sign out", signout_path, method: "delete" ,class: "btn btn-success" %>
 <% else %>
   <%= link_to "Sign Up", signup_path, class: "btn btn-success" %>
   <%= link_to "Sign In", signin_path, class: "btn btn-success" %>
 <% end %>
-<%= form_tag '/placeBids' do%>
+<br><br>
+<%= form_tag '/addToWatchList' do%>
 <table class="table">
   <thead>
   <tr>
@@ -19,17 +20,17 @@
     <th>Price</th>
     <th>Seller name</th>
     <th>End time</th>
-    <th>Bid</th>
+    <th></th>
   </tr>
   </thead>
-  <tbody>
 
+  <tbody>
   <% @auctions.each do |auction| %>
   <% if Time.now < auction.end_time %>
     <tr>
     <td><%= link_to "#{auction.product}", "/auctions/#{auction.id}" %></td>
     <td><%= auction.baseinfo %></td>
-    <td id = <%="tagID_#{auction.id}"%>  ><%= auction.price %></td>
+    <td id = <%="tagID_#{auction.id}"%>  ><%= "$ #{auction.price}" %></td>
     <td><%= auction.seller_name %></td>
     <td><%= auction.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
     <td><%= check_box_tag auction.id%></td>
@@ -38,14 +39,9 @@
   <% end # end auction.each do%>
   </tbody>
 </table>
-    <% if signed_in? %>
       <div style= "float: right;">
-        <%= text_field_tag 'Bidder_email', nil, :placeholder => 'Enter your email...'%><br>
-        <div style= "float: right;">
-          <%= submit_tag 'Place Bids' , class:"btn btn-primary" %>
-        </div>
+          <%= submit_tag 'Add to watch list' , class:"btn btn-primary" %>
       </div>
-    <% end %>
 <% end # end form_for %>
 
 

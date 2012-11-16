@@ -5,7 +5,7 @@
 <div class="row">
   <div class="span6 offset3">
     <h1>Update your profile</h1>
-
+    <br><br><br>
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object:f.object %>
 
@@ -17,9 +17,11 @@
 
         <%= f.label :password_confirmation, "Confirm Password" %>
         <%= f.password_field :password_confirmation %>
+
         <div>
+          <br>
           <%= f.submit "Save changes", class: "btn btn-primary" %>
-          <%= link_to "Profile", current_user,class: "btn btn-success" %>
+          <%= link_to "Back to Profile", current_user,class: "btn btn-success" %>
         </div>
     <% end %>
   </div>

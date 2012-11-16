@@ -6,17 +6,16 @@
 <div class = "row">
 	 <div class = "span6 offset3">
        <h1> Create New Auction </h1>
+       <br><br>
 		<%= form_for(@auction) do |a| %>
            <%= render 'shared/error_messages', object: a.object %>
-			<%= a.label :seller_name %>
-			<%= a.text_field :seller_name %>
-			
+
+            <%= a.label :product %>
+            <%= a.text_field :product %>
+
 			<%= a.label :baseinfo %>
 			<%= a.text_field :baseinfo %>
-			
-			<%= a.label :product %>
-			<%= a.text_field :product %>
-			
+
 			<%= a.label :price %>
 			<%= a.text_field :price %>
 
@@ -26,8 +25,11 @@
             <%= a.label :hours %>
             <%= a.text_field :hours %>
 
-            <div><%= a.submit "Submit auction",  class: "btn btn-primary"  %>
-                  <%= link_to "Back to auctions",root_path ,class: "btn btn-inverse" %> </div>
+            <div>
+              <br>
+              <%= a.submit "Submit auction",  class: "btn btn-primary"  %>
+              <%= link_to "Back to Profile", current_user,class: "btn btn-success" %>
+            </div>
 		<% end %>
 	 </div>
 </div>

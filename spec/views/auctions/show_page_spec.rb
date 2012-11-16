@@ -1,11 +1,10 @@
 require "spec_helper"
 describe "individual auction page" do
-
-  before (:each) do
-    @testAuction = FactoryGirl.create(:auction)
-    visit ('/auctions/1')
-  end
-
+  let(:user) { FactoryGirl.create(:user) }
+  before do
+   @testAuction = FactoryGirl.create(:auction, user: user)
+   visit '/auctions/1'
+   end
   it "should render" do
     page.should_not have_content("404")
     page.should_not have_content("Routing Error")

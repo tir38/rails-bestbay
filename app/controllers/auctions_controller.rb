@@ -97,11 +97,20 @@ class AuctionsController < ApplicationController
   def placeBid
      if !params[:amount].blank?
        amount = Integer(params[:amount])
+       currentPrice = params[:currentPrice].to_f
        @auction = Auction.find(params[:auction_id])
-       @auction.price = @auction.price + amount
-       @auction.highestBidderEmail = current_user.email
-       @auction.save
-       flash[:success] = "Successful placed bid!"
+       if (currentPrice + amount) > @auction.price
+         @auction.price = currentPrice + amount
+         @auction.highestBidderEmail = current_user.email
+         @auction.save
+         flash[:success] = "Successful placed bid!"
+       elsif (currentPrice + amount) == @auction.price
+         flash[:notice] = "Somebody has placed a same bid before you.
+                         If you want to be the highest bidder, please rebid on this item."
+       else
+         flash[:notice] = "Somebody has placed a higher bid than you.
+                         If you want to be the highest bidder, please rebid on this item."
+       end
      else
        flash[:error] = "Bid price must be a non-zero integer."
      end

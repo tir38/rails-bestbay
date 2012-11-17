@@ -1,5 +1,5 @@
 class AuctionsController < ApplicationController
-  before_filter :signed_in_user, only: [:new, :create, :destroy, :addToWatchList]
+  before_filter :signed_in_user, only: [:new, :create, :destroy, :addToWatchList, :placeBid, :deleteWatchlist]
   before_filter :correct_user,   only: :destroy
 
 	def home

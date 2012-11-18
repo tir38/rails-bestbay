@@ -117,6 +117,15 @@ class AuctionsController < ApplicationController
      redirect_to "/auctions/#{params[:auction_id]}"
   end
 
+  def uploadPicture
+    if post = PictureUpload.save(params[:upload])
+      flash[:successful] = "Picture has been uploaded successfully."
+    else
+      flash[:error]= "Invalid file."
+    end
+    redirect_to "/auctions/#{params[:auction_id]}"
+  end
+
   private
 
   def correct_user

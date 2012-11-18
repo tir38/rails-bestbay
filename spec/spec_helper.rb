@@ -5,7 +5,6 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 include Capybara::DSL
-require 'launchy'
 
 # not sure if capybara already requires these two, but...
 require 'nokogiri'

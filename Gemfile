@@ -12,7 +12,7 @@ gem 'whenever', :require => false
 
 group :development, :test do
    gem 'sqlite3'
-  gem 'capybara'
+  gem 'capybara' , '1.1.3'
 
 end
 

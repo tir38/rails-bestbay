@@ -29,7 +29,7 @@ describe "Authentication" do
       end
       it { should have_link('Sign out', href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
-      it { should have_link('Back to auctions',  href: root_path) }
+      it { should have_link('Auctions',  href: root_path) }
       it { should have_selector('title', text: user2.name) }
       it { should have_link('Settings', href: edit_user_path(user2)) }
       describe "followed by signout" do

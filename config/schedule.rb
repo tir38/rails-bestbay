@@ -1,31 +1,21 @@
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
+# for creating cron jobs
 
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
+# to turn this into cron job run from command line in rails run:
+# whenever --update-crontab bestBay
 
-# Learn more: http://github.com/javan/whenever
 
-set :output, "log/cron_log.log"
+# set the cron log location
+set :output, {:error => '/home/jason/bestbay/log/cron_error.log', :standard => '/home/jason/bestbay/log/cron_status.log'}
+set :job_template, "bash -i -c ':job'"
+env :PATH, ENV['PATH']
 
 every 1.minute do
+  #command "echo $PATH"                             # confirm shell variable PATH was loaded
+  #command "cd #{path}"                             # this is not needed
+  #command "pwd"                                    # visualize current directory
+  #command "rvm current"                            # visualized default ruby version and gemset
+  command "rvm use ruby-1.9.3-p194@cmucourse"       # set desired gemest
+  #command "rvm current"                            # visualize proper gemset load
 
-  runner "AuctionsHelper.checkForExpiredAuction"
+  runner "AuctionsHelper.checkForExpiredAuction", :environment => 'development' # run method
 end
-
-
-# to turn this into cron job run from command line in rails r:
-# whenever --update-crontab bestBay

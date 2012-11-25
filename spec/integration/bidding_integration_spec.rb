@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "When bidding =>" do
+describe "When bidding" do
   let(:bid) {"Place Bids"} # place bid button name
 
   before(:each) do
@@ -10,7 +10,7 @@ describe "When bidding =>" do
     visit root_path
   end
 
-  describe "when bidding on single auction =>"  do
+  describe "when bidding on single auction"  do
     @auctions = Auction.all
 
     @auctions.each do |auction|

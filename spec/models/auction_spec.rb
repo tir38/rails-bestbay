@@ -10,10 +10,10 @@
 #  seller_name        :string(255)
 #  baseinfo           :string(255)
 #  highestBidderEmail :string(255)
-#  bid                :boolean
 #  days               :integer
 #  hours              :integer
 #  end_time           :datetime
+#  user_id            :integer
 #
 
 require 'spec_helper'

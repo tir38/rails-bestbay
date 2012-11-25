@@ -12,6 +12,8 @@ class UsersController < ApplicationController
    def create
      @user = User.new(params[:user])
      if @user.save
+       UserMailer.registration_confirmation(@user).deliver
+       #once new user register, send an confirmation email to the user's email.
        sign_in @user
        flash[:success] = "Welcome to BestBay!"
        redirect_to @user

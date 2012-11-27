@@ -6,7 +6,7 @@ describe "Background processes:" do
 
   describe "expired auctions" do
 
-    describe "cronjob for calling ruby method" do
+    describe "cronjob for calling ruby method", :long_time => true do
 
         before(:each) do
           if File.exist?('log/cron_status.log')      # if cron log already exists...
@@ -45,12 +45,12 @@ describe "Background processes:" do
           @expiredAuction.save
         end
 
-        it "should update price." do
+        it "should update status." do
           AuctionsHelper.checkForExpiredAuction
-          # @expiredAuction.price.should eq(100000) # not sure why this doesn't work.
+          # @expiredAuction.status.should eq("expired") # not sure why this doesn't work.
           # Instead I have to re-get the auction from DB
           @expiredAuction = Auction.find(1)
-          @expiredAuction.price.should eq(100000)
+          @expiredAuction.status.should eq("expired")
         end
 
       end
@@ -61,10 +61,10 @@ describe "Background processes:" do
           @nonExpiredAuction = FactoryGirl.create(:auction)
         end
 
-        it "should not update price." do
-          initialPrice =  @nonExpiredAuction.price
+        it "should not update status." do
+          initialStatus =  @nonExpiredAuction.status
           AuctionsHelper.checkForExpiredAuction
-          @nonExpiredAuction.price.should eq(initialPrice)
+          @nonExpiredAuction.status.should eq(initialStatus)
         end
       end
     end

@@ -3,9 +3,7 @@ require "spec_helper"
 describe "Home page" do
   before { visit root_path}
 
-
-  root_URL = "http://0.0.0.0:3000"   # for nokogiri
-  let(:submit) {"Place Bids"}
+  let(:submit) {"Add to watch list"}
 
 	it "should render the home page." do
 		page.should_not have_content("404")
@@ -18,50 +16,36 @@ describe "Home page" do
       visit root_path
     end
 
-    context "when no checkboxes checked, no email entered, and Place Bids button clicked"  do
+    it "should have Add to watch list button" do
+      page.should have_button(:submit)#"Add to watch list")
+    end
+
+    context "when no checkboxes checked, and 'Add to watch list' button clicked"  do
 
       it "should not display any 'success' messages." do
-          pending "need to login to see Place Bids button"
           click_button submit
-          page.should_not have_content ("Bidder email can't be blank")
-          page.should_not have_content ("Just updated with price, and set highest bidder email")
+          page.should have_content("Please choose at least one auction that is not yours and not in your watch list.")
+          page.should_not have_content ("Auctions have been successfully added to your watch list!")
       end
 
       it "should not make any changes to database." do
-        pending "need to login to see Place Bids button"
         expect { click_button submit }.not_to change(Auction, :count)
       end
 
-    end  # context "no checkboxes checked, no email entered, submit button clicked"
-
-    context "when checkbox checked, no email entered, and Place Bids button clicked" do
-
-      before (:each) do
-        @testAuction = FactoryGirl.create(:auction, user:user) # saved auction, will be rolled back after test, automatically
-        visit root_path # revisit page after adding auction
-      end
-
-      it "should display error message." do
-        pending "need to login to see Place Bids button"
-        # since test page, we know that an auction w/ ID = 1 will be on the page
-        page.check ('1')
-        click_button submit
-        page.should have_content ("Bidder email can't be blank")
-      end
-
-      it "should not make any changes to database." do
-        pending "need to login to see Place Bids button"
-        page.check ('1')
-        expect {click_button submit}.not_to change(Auction, :count)
-      end
     end
-  end # context "when user is signed in"
+
+    context "when checkbox checked, and 'Add to watch list' button clicked" do
+
+      # this test now in "adding to watchlist" integration test
+
+    end
+  end
 
   # --------------------------------------------------------------------
   context "when user is not signed in" do
 
-    it "should not display 'Place Bids' button." do
-      page.should_not have_content(submit)
+    it "should not display 'Add to watch list' button." do
+      page.should_not have_content(:submit)
     end
 
     describe "when check box checked" do
@@ -88,12 +72,6 @@ describe "Home page" do
         page.should have_link("#{@testAuction.product}", {:href => "/auctions/#{@testAuction.id}"} )
       end
     end
-
-    describe "response of clicking link(s)" do
-      # the response of these links is now in integration tests
-    end
   end
-
-
 end
 

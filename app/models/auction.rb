@@ -14,12 +14,13 @@
 #  hours              :integer
 #  end_time           :datetime
 #  user_id            :integer
+#  status             :string(255)
 #
 
 class Auction < ActiveRecord::Base
 
 	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail,
-                   :days, :hours
+                   :days, :hours, :status
   #before_save {|auction| auction.highestBidderEmail = highestBidderEmail.downcase }
   belongs_to :user
 
@@ -31,12 +32,13 @@ class Auction < ActiveRecord::Base
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :user_id, presence:true
   validate :days_and_hours
+  validate :status
   default_scope order: 'auctions.created_at DESC'
 
   def days_and_hours
     # It may not validate days and hours separately before validating days_and_hours,
     # so I need to make sure that days and hours are both not NIL before trying to compute 'time'
-    # I also only want to compute end_time
+    # I also only want to compute end_time if it has not been computed yet
     if (!self.days.nil? && !self.hours.nil?)
 
       if (self.end_time.nil?) # if end_time has not yet been computed
@@ -49,6 +51,24 @@ class Auction < ActiveRecord::Base
         end
       end
     end
+
+    self.status # validate status after end time is set
   end
+
+  def status
+    # status must be one of the following strings
+    # - open
+    # - expired
+
+   unless self.end_time.nil?
+    if self.end_time < Time.now.utc
+         self.status = "expired"
+     elsif self.end_time >= Time.now.utc
+        self.status = "open"
+     else
+        self.errors[:base] << "Auction status cannot be set"
+     end
+  end
+end
 
 end

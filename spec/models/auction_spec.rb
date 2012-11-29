@@ -10,10 +10,11 @@
 #  seller_name        :string(255)
 #  baseinfo           :string(255)
 #  highestBidderEmail :string(255)
-#  bid                :boolean
 #  days               :integer
 #  hours              :integer
 #  end_time           :datetime
+#  user_id            :integer
+#  status             :string(255)
 #
 
 require 'spec_helper'
@@ -31,12 +32,22 @@ describe Auction do  # tests for the model
     it { should respond_to(:hours)}
     it { should respond_to(:end_time)}
     it { should respond_to(:user_id) }
+    it { should respond_to(:status)}
 
     it { should be_valid }
 
     describe "when user_id is not present" do
       before { @auction.user_id = nil }
       it { should_not be_valid }
+    end
+
+    describe "when just created" do
+      it "should have end time." do
+        @auction.end_time.should_not be(nil)
+      end
+      it "should have status set to 'open'." do
+        @auction.status.should eq("open")
+      end
     end
 
     describe "accessible attributes" do

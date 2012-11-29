@@ -6,10 +6,14 @@ gem 'bootstrap-sass', '2.0.4'
 gem 'jquery-rails'
 gem 'annotate', ">=2.5.0"
 gem 'bcrypt-ruby', '3.0.1'
+gem 'launchy'
+
+gem 'whenever', :require => false
+
 
 group :development, :test do
    gem 'sqlite3'
-  gem 'capybara'
+  gem 'capybara' , '1.1.3'
 
 end
 

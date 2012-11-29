@@ -94,6 +94,7 @@ class AuctionsController < ApplicationController
     redirect_to current_user
   end
 
+
   def placeBid
      if !params[:amount].blank?
        amount = Integer(params[:amount])

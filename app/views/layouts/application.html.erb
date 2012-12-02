@@ -11,19 +11,24 @@
       h1 {font-size:250%;}
       h2 {font-size:100%;}
   </STYLE>
-
-
 </head>
+
 <body>
-<div class= "container">
-  <% flash.each do |key, value| %>
+<div id="wrapper">
+ <div id="content_wrapper" class= "container">
+   <div id="content_inner_wrapper">
+   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
   <% end %>
   <%= yield %>
+    </div>
+   </div>
+ </div>
 </div>
 
-
-<div align = "center">Thanks for checking out our site.<br>
+<div id="footer+wrapper" align = "center">
+  <div id="footer_inner_wrapper">
+  Thanks for checking out our site.<br>
   Designed as part of 18-642 at Carnegie Mellon University.<br>
   The team consists of:<br>
   <%= link_to('Alekhya Gampa', "") %><br>
@@ -32,7 +37,7 @@
     <br>
    Check out our  <%= link_to "git repo", 'https://github.com/cmusv/Fall-2012-18642-TfIV'%>
   and <%= link_to "build status", 'http://build.sv.cmu.edu:3000/projects/TflV'%>
-
+  </div>
 </div>
 </body>
 </html>

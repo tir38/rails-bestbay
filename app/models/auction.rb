@@ -20,7 +20,11 @@
 class Auction < ActiveRecord::Base
 
 	attr_accessible  :price, :product, :baseinfo, :seller_name, :end_time, :highestBidderEmail,
-                   :days, :hours, :status
+                   :days, :hours, :status ,:photo
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                            :url  => "/assets/products/:id/:style/:basename.:extension",
+                            :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+
   #before_save {|auction| auction.highestBidderEmail = highestBidderEmail.downcase }
   belongs_to :user
 
@@ -34,6 +38,8 @@ class Auction < ActiveRecord::Base
   validate :days_and_hours
   validate :status
   default_scope order: 'auctions.created_at DESC'
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   def days_and_hours
     # It may not validate days and hours separately before validating days_and_hours,

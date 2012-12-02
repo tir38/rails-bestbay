@@ -1,15 +1,17 @@
 <% provide(:title, @auction.product) %>
 
-<div style= "float: right;">
+<div id="display">
+
+<div id="element3">
   <% if signed_in? %>
       <%= link_to current_user.name, current_user, class: "btn btn-success" %>
   <% end %>
   <%= link_to "Auctions", root_path, class: "btn btn-inverse" %>
 </div>
 
-<div style= "float: left;">
-<h1><%= @auction.product %></h1>
+<h1><%= @auction.product %></h1><br>
 
+<div id="element1">
 <h2>Description:</h2>
 <%=  @auction.baseinfo %> <br>
 
@@ -40,4 +42,11 @@
   <% end %>
  <% end %>
 <% end %>
+</div>
+
+<div id="element2">
+    <% if @auction.photo_file_name? %>
+     <%= image_tag @auction.photo.url(:medium) %><br>
+    <% end %>
+</div>
 </div>

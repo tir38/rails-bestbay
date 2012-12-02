@@ -7,24 +7,34 @@
 	 <div class = "span6 offset3">
        <h1> Create New Auction </h1>
        <br><br>
-		<%= form_for(@auction) do |a| %>
+		<%= form_for @auction,:html => {:multipart => true}  do |a| %>
            <%= render 'shared/error_messages', object: a.object %>
 
+            <p>
             <%= a.label :product %>
-            <%= a.text_field :product %>
+            <%= a.text_field :product %><br>
+            </p>
 
+           <p>
 			<%= a.label :baseinfo %>
-			<%= a.text_field :baseinfo %>
+            <%= a.text_area :baseinfo,placeholder: "Describe your product...", :rows => "10" %><br>
+           </p>
 
+            <p>
 			<%= a.label :price %>
-			<%= a.text_field :price %>
-
+			<%= a.text_field :price %><br>
+            </p>
+            <p>
 			<%= a.label :days %>
-			<%= a.text_field :days %>
-
+			<%= a.text_field :days %><br>
+            </p>
+            <p>
             <%= a.label :hours %>
-            <%= a.text_field :hours %>
-
+            <%= a.text_field :hours %><br>
+            </p>
+            <p>
+            <%= a.file_field :photo  %>
+            </p>
             <div>
               <br>
               <%= a.submit "Submit auction",  class: "btn btn-primary"  %>

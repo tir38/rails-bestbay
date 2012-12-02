@@ -34,4 +34,7 @@ BestBay::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # let Paperclip know to look there by adding that directory to its path. add by Hao
+  Paperclip.options[:command_path] = "d:/ImageMagic/ImageMagick-6.8.0-Q16/"
 end

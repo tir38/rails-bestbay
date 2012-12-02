@@ -1,39 +1,90 @@
- @import "bootstrap";
+@import "bootstrap";
 
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
 
 
- /* universal */
+/* universal */
 
- html {
-   overflow-y: scroll;
- }
+html, body {
+  height: 100%;
+}
 
- body {
-   padding-top: 60px;
-   font-family: Comic Sans MS;
- }
+body {
+  margin: 50px;
+  padding: 0px;
+  font-family: Comic Sans MS;
+}
 
- section {
-   overflow: auto;
- }
+html {
+  overflow-y: scroll;
+}
 
- textarea {
-   resize: vertical;
- }
+section {
+  overflow: auto;
+}
 
- .center {
-   text-align: center;
-   h1 {
-     margin-bottom: 10px;
-   }
- }
+textarea {
+  resize: vertical;
+}
 
- #emphasize {
-   color: #ff0000;
- }
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+#emphasize {
+  color: #ff0000;
+}
+
+div#wrapper {
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0px 0px -41px 0px;
+}
 
 
+div#footer_wrapper {
+  width: 100%;
+  height: 41px;
+}
 
+
+div#content_wrapper {
+  width: 100%;
+  padding: 0px 0px 41px 0px;
+}
+
+
+div#footer_wrapper, div#content_wrapper {
+  min-width: 942px;
+}
+
+
+div#footer_inner_wrapper, div#content_inner_wrapper {
+  width: 942px;
+  margin: 0px auto;
+
+}
+
+#display {
+  position:relative;
+}
+
+#element1 {
+  float:left;
+  width:300px;
+}
+
+#element2 {
+  float: left;
+}
+
+#element3 {
+  float: right;
+}

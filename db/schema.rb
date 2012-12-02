@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127202617) do
+ActiveRecord::Schema.define(:version => 20121202000730) do
 
   create_table "auctions", :force => true do |t|
     t.datetime "created_at",         :null => false
@@ -27,6 +26,10 @@ ActiveRecord::Schema.define(:version => 20121127202617) do
     t.datetime "end_time"
     t.integer  "user_id"
     t.string   "status"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "auctions", ["user_id", "created_at"], :name => "index_auctions_on_user_id_and_created_at"
@@ -51,4 +54,3 @@ ActiveRecord::Schema.define(:version => 20121127202617) do
   end
 
 end
-

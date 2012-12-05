@@ -30,7 +30,7 @@
     <tr>
     <td><%= link_to "#{auction.product}", "/auctions/#{auction.id}" %></td>
     <td><%= auction.baseinfo %></td>
-    <td id = <%="tagID_#{auction.id}"%>  ><%= "$ #{auction.price}" %></td>
+    <td id = <%="tagID_#{auction.id}"%>  ><%= number_to_currency(auction.price) %></td>
     <td><%= auction.seller_name %></td>
     <td><%= auction.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
     <td><%= check_box_tag auction.id%></td>

@@ -16,7 +16,7 @@
 <%=  @auction.baseinfo %> <br>
 
 <h2>Current Price: </h2>
-<%= "$ #{@auction.price} " %>   <br>
+<%= number_to_currency(@auction.price) %>   <br>
 
 <h2>End time:</h2>
 <%= @auction.end_time %>  <br>

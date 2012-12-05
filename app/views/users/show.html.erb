@@ -27,7 +27,7 @@
           <% @user.auctions.each do |auction| %>
           <tr>
             <td><%= link_to "#{auction.product}", "/auctions/#{auction.id}" %></td>
-            <td><%= "$ #{auction.price}" %></td>
+            <td><%= number_to_currency(auction.price) %></td>
             <% if Time.now < auction.end_time %>
             <td><%= auction.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
             <% else %>
@@ -43,7 +43,7 @@
           </tbody>
         </table>
       <% end %>
-      <br><br><br><br><br>
+      <br><br><br>
 
       <% if @user.watch_lists.any? %>
       <h3 class=center>My interested auctions(<%= @user.watch_lists.count %>)</h3><br>
@@ -62,7 +62,7 @@
         <% @item = Auction.find(item.auction_id) %>
           <tr>
             <td><%= link_to "#{ @item.product }", "/auctions/#{@item.id}" %></td>
-            <td><%= "$ #{@item.price}" %></td>
+            <td><%= number_to_currency(@item.price) %></td>
             <% if Time.now < @item.end_time %>
                 <td><%= @item.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
             <% else %>

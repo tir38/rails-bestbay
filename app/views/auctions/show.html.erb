@@ -28,7 +28,7 @@
   <%=  @auction.highestBidderEmail %>
 <% end %>
 <br><br>
-<% if signed_in? %>
+<% if signed_in? && @auction.status= "open" %>
  <% if @auction.user_id != current_user.id %>
   <!-- form_tag placeBid_path(:auction_id => @auction.id) do  -->
   <%= form_tag :controller => "auctions", :action => "placeBid",

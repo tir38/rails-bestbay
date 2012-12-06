@@ -6,3 +6,4 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{user.name} <#{user.email}>", :subject => "Registered")
   end
 end
+

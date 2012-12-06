@@ -24,11 +24,20 @@ class AuctionsController < ApplicationController
   def destroy
      @auction = current_user.auctions.find(params[:id])
      @item = WatchList.all(:conditions => { :auction_id => params[:id] })
+     @bid_auction = BidList.all(:conditions => { :auction_id => params[:id] })
+
      if @item
        @item.each do |i|
          i.destroy
        end
      end
+
+     if @bid_auction
+       @bid_auction.each do |j|
+         j.destroy
+       end
+     end
+
      if @auction
        @auction.destroy
      end
@@ -104,6 +113,20 @@ class AuctionsController < ApplicationController
          @auction.price = currentPrice + amount
          @auction.highestBidderEmail = current_user.email
          @auction.save
+         # save auction to current user's bid list
+         flag = 0
+         current_user.bid_lists.each do |item|
+           if item.auction_id == @auction.id
+             flag = 1
+             break
+           end
+         end
+         if flag == 0
+           @bid_list = current_user.bid_lists.build(params[:bid_list])
+           @bid_list.auction_id = @auction.id
+           @bid_list.save
+         end
+         # ---------------------------------------
          flash[:success] = "Successful placed bid!"
        elsif (currentPrice + amount) == @auction.price
          flash[:notice] = "Somebody has placed a same bid before you.

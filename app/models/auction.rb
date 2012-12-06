@@ -56,7 +56,7 @@ class Auction < ActiveRecord::Base
         if (self.days == 0 && self.hours == 0)
           self.errors[:base] << "Days and hours can not be zero."
         else
-          time = self.days*24 + self.hours
+          time = self.days*24 + self.hours/60
           self.end_time = time.hours.from_now.utc
         end
       end

@@ -41,7 +41,7 @@ describe "Background processes:" do
         before do
           # create auction with passed expiration time
           @expiredAuction = FactoryGirl.create(:auction)
-          @expiredAuction.end_time = Time.now.utc - 1.minute
+          @expiredAuction.end_time = Time.now.utc - 1.minute   # explicitly change end time to create expired auction
           @expiredAuction.save
         end
 

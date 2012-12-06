@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :auctions, dependent: :destroy
   has_many :watch_lists, dependent: :destroy
+  has_many :bid_lists, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

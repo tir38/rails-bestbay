@@ -15,6 +15,10 @@
 #  end_time           :datetime
 #  user_id            :integer
 #  status             :string(255)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
 #
 
 class Auction < ActiveRecord::Base

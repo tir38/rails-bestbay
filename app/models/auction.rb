@@ -15,6 +15,10 @@
 #  end_time           :datetime
 #  user_id            :integer
 #  status             :string(255)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
 #
 
 class Auction < ActiveRecord::Base
@@ -36,7 +40,7 @@ class Auction < ActiveRecord::Base
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :user_id, presence:true
   validate :days_and_hours
-  validate :status
+  validate :setStatus
   default_scope order: 'auctions.created_at DESC'
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
@@ -58,10 +62,10 @@ class Auction < ActiveRecord::Base
       end
     end
 
-    self.status # validate status after end time is set
+    self.setStatus # validate status after end time is set
   end
 
-  def status
+  def setStatus
     # status must be one of the following strings
     # - open
     # - expired

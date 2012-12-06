@@ -28,7 +28,7 @@
           <tr>
             <td><%= link_to "#{auction.product}", "/auctions/#{auction.id}" %></td>
             <td><%= number_to_currency(auction.price) %></td>
-            <% if auction.status = "open" %>
+            <% if auction.status == "open" %>
                 <td><%= auction.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
             <% else %>
                 <td id="emphasize"><%= "Auction Closed" %></td>
@@ -38,7 +38,7 @@
             <td><%= link_to "delete", auction, method: :delete,
                             data: { confirm: "Delete auction can't be undo. You sure?" } %>
             </td>
-          </tr>                                             =
+          </tr>
           <% end%>
           </tbody>
         </table>
@@ -63,7 +63,7 @@
           <tr>
             <td><%= link_to "#{ @item.product }", "/auctions/#{@item.id}" %></td>
             <td><%= number_to_currency(@item.price) %></td>
-            <% if Time.now < @item.end_time %>
+            <% if @item.status == "open" %>
                 <td><%= @item.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
             <% else %>
                 <td id="emphasize"><%= "Auction Closed" %></td>
@@ -99,7 +99,7 @@
           <tr>
             <td><%= link_to "#{ @item.product }", "/auctions/#{@item.id}" %></td>
             <td><%= number_to_currency(@item.price) %></td>
-            <% if auction.status = "open" %>
+            <% if @item.status == "open" %>
                 <td><%= @item.end_time.strftime("%I:%M:%S %p %B %-d,%Y") %></td>
             <% else %>
                 <td id="emphasize"><%= "Auction Closed" %></td>

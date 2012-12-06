@@ -40,7 +40,7 @@ class Auction < ActiveRecord::Base
   validates :hours,:presence => true, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   validates :user_id, presence:true
   validate :days_and_hours
-  validate :setStatus
+  #validate :setStatus
   default_scope order: 'auctions.created_at DESC'
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
@@ -58,23 +58,27 @@ class Auction < ActiveRecord::Base
         else
           time = self.days*24 + self.hours
           self.end_time = time.hours.from_now.utc
+          self.setStatus # validate status after end time is set
         end
       end
     end
-
-    self.setStatus # validate status after end time is set
   end
+
+
 
   def setStatus
     # status must be one of the following strings
     # - open
     # - expired
+    puts 'im inside setStatus method'
 
    unless self.end_time.nil?
     if self.end_time < Time.now.utc
-         self.status = "expired"
-     elsif self.end_time >= Time.now.utc
+        self.status = "expired"
+        self.save
+    elsif self.end_time >= Time.now.utc
         self.status = "open"
+        self.save
      else
         self.errors[:base] << "Auction status cannot be set"
      end

@@ -24,8 +24,8 @@
 require 'spec_helper'
 describe Auction do  # tests for the model
     let(:user) { FactoryGirl.create(:user) }
-    before { @auction = user.auctions.build(seller_name:"bob", price:10.00, product:"book shelf",
-             baseinfo:"tall, wooden 3 shelves", days:2, hours:5, end_time: 53.hours.from_now.utc )}
+    before { @auction = user.auctions.create(seller_name:"bob", price:10.00, product:"book shelf",
+             baseinfo:"tall, wooden 3 shelves", days:2, hours:5 )}
      subject { @auction }
 
     it { should respond_to(:seller_name)}

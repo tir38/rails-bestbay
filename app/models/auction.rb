@@ -56,8 +56,8 @@ class Auction < ActiveRecord::Base
         if (self.days == 0 && self.hours == 0)
           self.errors[:base] << "Days and hours can not be zero."
         else
-          time = self.days*24 + self.hours/60
-          self.end_time = time.hours.from_now.utc
+          time =  self.hours  + self.days*24
+          self.end_time = time.minutes.from_now.utc
           self.setStatus # validate status after end time is set
         end
       end
@@ -70,12 +70,15 @@ class Auction < ActiveRecord::Base
     # status must be one of the following strings
     # - open
     # - expired
-    puts 'im inside setStatus method'
 
    unless self.end_time.nil?
     if self.end_time < Time.now.utc
-        self.status = "expired"
-        self.save
+        unless self.status == "expired" # unless status has ALREADY been set to expired
+          UserMailer.endAuction_confirmation_to_seller(self).deliver # send email
+          UserMailer.endAuction_confirmation_to_bidder(self).deliver
+          self.status = "expired"
+          self.save
+        end
     elsif self.end_time >= Time.now.utc
         self.status = "open"
         self.save

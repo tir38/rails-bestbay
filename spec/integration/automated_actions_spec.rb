@@ -1,6 +1,7 @@
 # tests for all background processes and automated actions
 
 require "spec_helper"
+require 'user_mailer.rb'
 
 describe "Background processes:" do
 
@@ -46,6 +47,7 @@ describe "Background processes:" do
         end
 
         it "should update status." do
+          pending "need to stub out email sending"
           AuctionsHelper.checkForExpiredAuction
           # @expiredAuction.status.should eq("expired") # not sure why this doesn't work.
           # Instead I have to re-get the auction from DB

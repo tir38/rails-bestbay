@@ -3,15 +3,15 @@
 FactoryGirl.define do
 
   factory :user1,class:User do
-    name     "alekhya"
-    email    "alekhya@example.com"
+    name     "Jason"
+    email    "jwatwood@gmail.com"
     password "foobar"
     password_confirmation "foobar"
   end
 
   factory :user2, class:User do
-    name     "Jason"
-    email    "jason@example.com"
+    name     "Hao"
+    email    "yaohao.hi@gmail.com"
     password "foobar"
     password_confirmation "foobar"
   end

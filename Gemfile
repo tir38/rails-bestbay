@@ -7,11 +7,11 @@ gem 'jquery-rails'
 gem 'annotate', ">=2.5.0"
 gem 'bcrypt-ruby', '3.0.1'
 gem 'launchy'
-gem 'sqlite3'
+gem 'whenever'
 gem "paperclip", "~> 3.0"
 
 group :development, :test do
-
+  gem 'sqlite3'
   gem 'capybara' , '1.1.3'
 
 end

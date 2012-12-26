@@ -15,9 +15,6 @@
 /log/*.log
 /tmp
 
-# Ignore all stored product images
-/pubic/assets/products
-
 webrat.log
 .idea/*
 coverage/*

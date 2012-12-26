@@ -10,10 +10,13 @@ gem 'launchy'
 gem 'whenever'
 gem "paperclip", "~> 3.0"
 
+gem "rmagick", "2.12.0", :require => 'RMagick'
+# you may need to "maunally" install some image magick prerequisites:
+# http://stackoverflow.com/questions/5201689/rmagick-gem-install-cant-find-magick-config
+
 group :development, :test do
   gem 'sqlite3'
   gem 'capybara' , '1.1.3'
-
 end
 
 group :production do
@@ -28,11 +31,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
 #suggested gems by Todd
 gem 'factory_girl_rails' 
 gem 'rspec-rails' 
-gem 'devise' 
-#gem 'ruby-debug19' 
-#gem 'ruby-debug-base19x' 
-#gem 'ruby-debug-ide' #'0.4.6' 
+gem 'devise'

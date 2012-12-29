@@ -1,12 +1,15 @@
 == Welcome to Bestbay ===
+
 Bestbay is a place for people to sell their items and bid on items sold by others. This website, while fully functional, was designed as part of a RoR course. Feel free to browse around and check out our work.
 
 - thanks tFiv
 
 == How To Use ==
+
 The complete basic process of selling/bidding is implemented. Feel free to create an account, you'll need one to experience the full capabilities of the site. After signing up, you can post items for sale, bid on others items, or just track items you might be interested in.
 
 == To use locally ===
+
 If you wish to grab this repo and run it locally you'll need a few things:
 1. Not everything is contained in this repo. You will need the following external software:
     A. ImageMagick

@@ -11,6 +11,7 @@ The complete basic process of selling/bidding is implemented. Feel free to creat
 == To use locally ===
 
 If you wish to grab this repo and run it locally you'll need a few things:
+
 1. Not everything is contained in this repo. You will need the following external software:
     A. ImageMagick
     B. Cron job scheduler

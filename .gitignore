@@ -16,7 +16,7 @@
 /tmp
 
 # Ignore all stored product images
-/pubic/assets/products
+/pubic/assets/products/*
 
 webrat.log
 .idea/*

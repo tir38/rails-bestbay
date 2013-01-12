@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # all groups
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.4'
 gem 'jquery-rails'
 gem 'annotate', ">=2.5.0"
